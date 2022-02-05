@@ -2,8 +2,7 @@ import "./style.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-// import {model} from "./model.js"
-// Setup
+
 const loader = new GLTFLoader();
 var clock = new THREE.Clock();
 let model ;
@@ -40,7 +39,7 @@ document.body.appendChild(renderer.domElement);
 const geometry = new THREE.SphereGeometry();
 const material = new THREE.MeshBasicMaterial({
   color: 0xffff00,
-  // wireframe: true,
+  wireframe: true,
 });
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
@@ -48,15 +47,15 @@ scene.add(cube);
 camera.position.z = 8;
 const controls = new OrbitControls(camera, renderer.domElement);
 
-const pointLight = new THREE.PointLight(0xffffff);
-pointLight.position.set(20, 20,20);
+// const pointLight = new THREE.PointLight(0xffffff);
+// pointLight.position.set(20, 20,20);
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-directionalLight.position.set(200, 500, 300);
+// const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+// directionalLight.position.set(200, 500, 300);
 
-const light = new THREE.AmbientLight( 0xffffff ); // soft white light
-light.position.set(20, 20,20);
-scene.add(pointLight,directionalLight, light);
+const ambientLight = new THREE.AmbientLight( 0xffffff ); 
+ambientLight.position.set(2, 2,2);
+scene.add( ambientLight);
 
 // const lightHelper = new THREE.PointLightHelper(pointLight)
 // const gridHelper = new THREE.GridHelper(200, 50);
@@ -97,7 +96,7 @@ function animate() {
                                  -0.1)
              if (model.position.y < -4.4 ) {
                  up = true
-                 if(count == 9){
+                 if(count == 10){
                   count = 0
                 }
              }
